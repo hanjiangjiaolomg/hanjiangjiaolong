@@ -1,0 +1,602 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="名词解释： JCE（Java Cryptography Extension）是一组包，它们提供用于加密、密钥生成和协商以及 Message Authentication Code（MAC）算法的框架和实现。 它提供对对称、不对称、块和流密码的加密支持，它还支持安全流和密封的对象。它不对外出口，用它开发完成封装后将无法调用。 自1.4版本以来， JCE已集成到Java 2 SDK中。 下图显示了Ja">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java默认不支持AES256原因">
+<meta property="og:url" content="http://example.com/articles/Java%E9%BB%98%E8%AE%A4%E4%B8%8D%E6%94%AF%E6%8C%81AES256.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="名词解释： JCE（Java Cryptography Extension）是一组包，它们提供用于加密、密钥生成和协商以及 Message Authentication Code（MAC）算法的框架和实现。 它提供对对称、不对称、块和流密码的加密支持，它还支持安全流和密封的对象。它不对外出口，用它开发完成封装后将无法调用。 自1.4版本以来， JCE已集成到Java 2 SDK中。 下图显示了Ja">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/Java%E9%BB%98%E8%AE%A4%E4%B8%8D%E6%94%AF%E6%8C%81AES256/JCA_Overview.png">
+<meta property="article:published_time" content="2019-11-22T05:20:43.000Z">
+<meta property="article:modified_time" content="2020-07-03T18:32:30.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="加密">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/Java%E9%BB%98%E8%AE%A4%E4%B8%8D%E6%94%AF%E6%8C%81AES256/JCA_Overview.png">
+  
+  
+  
+  <title>Java默认不支持AES256原因 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 23vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Java默认不支持AES256原因"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2019-11-22 13:20" pubdate>
+          2019年11月22日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Java默认不支持AES256原因</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>名词解释：</p>
+<p>JCE（Java Cryptography Extension）是一组包，它们提供用于加密、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AF%86%E9%92%A5">密钥</a>生成和协商以及 Message Authentication Code（MAC）算法的框架和实现。</p>
+<p>它提供对对称、不对称、块和流密码的加密支持，它还支持安全流和密封的对象。它不对外出口，用它开发完成封装后将无法调用。</p>
+<p><strong>自1.4版本以来，</strong> JCE已集成到<strong>Java 2 SDK中。</strong></p>
+<p>下图显示了Java密码体系结构的一般概述。我们在本文中讨论的内容与Sun &#x2F; Oracle提供的JCE实现有关。</p>
+<p><img src="/Java%E9%BB%98%E8%AE%A4%E4%B8%8D%E6%94%AF%E6%8C%81AES256/JCA_Overview.png" srcset="/img/loading.gif" lazyload alt="pass1"></p>
+<p>根据Oracle文档-  <a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/1.5.0/docs/guide/security/jce/JCERefGuide.html#Introduction">https://docs.oracle.com/javase/1.5.0/docs/guide/security/jce/JCERefGuide.html#Introduction</a> </p>
+<p><strong>由于一些国家&#x2F;地区的政府对进口管制的限制，Sun Microsystems的JDK 5.0附带的管辖权策略文件指定可以使用“强”但有限的加密。</strong></p>
+<p> 这意味着JDK默认具有故意的密钥大小限制。因此，您不能使用超过128位（16字节）的密钥执行加密。如果这样做，您会得到类似以下的错误：</p>
+<p><strong>由以下原因引起：java.security.InvalidKeyException：密钥大小或默认参数非法</strong></p>
+<p>如果您收到此Exception，则您没有做错任何事情。这只是对JDK中内置的加密密钥的限制。</p>
+<p>原因是某些国家&#x2F;地区限制了加密算法中使用的允许密钥强度。</p>
+<p>再次根据文档- </p>
+<p><strong>这些文件的“强度不受限制”版本表明对居住在符合条件的国家（大多数国家）中的人没有加密强度的限制。但是只有“强”版本可以导入政府要求限制的国家。JCE框架将强制执行已安装的管辖权策略文件中指定的限制。</strong></p>
+<h3 id="Java-9及更高版本："><a href="#Java-9及更高版本：" class="headerlink" title="Java 9及更高版本："></a><strong>Java 9及更高版本：</strong></h3><p>无限强度辖区策略文件包含在Java 9中，并且默认情况下使用（<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/9/migrate/toc.htm#JSMIG-GUID-D6EE05FB-6791-43B3-A610-3F4416DEE508">请参阅《 Java 9迁移指南》中的“安全更新”</a>）。</p>
+<p>如果您在Java 9中遇到此错误，则可能意味着策略配置已更改为限制性更强的策略（受限），请参阅迁移指南中的说明：</p>
+<p>它指出</p>
+<p>如果您的应用程序以前需要Java密码学扩展（JCE）无限强度管辖权策略文件，那么您不再需要下载或安装它们。它们包含在JDK中，并且默认情况下处于激活状态。</p>
+<p>如果您具有默认提供的两个策略文件都不满足的要求，则可以自定义这些策略文件以满足您的需求。<br> &#x2F;conf&#x2F;security&#x2F;java.security   <a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/9/security/java-cryptography-architecture-jca-reference-guide.htm#JSSEC-GUID-EFA5AC2D-644E-4CD9-8523-C6D3936D5FB1">加密强度配置”</a></p>
+<h3 id="Java-8-Update-161及更高版本"><a href="#Java-8-Update-161及更高版本" class="headerlink" title="Java 8 Update 161及更高版本"></a>Java 8 Update 161及更高版本</h3><p>从Java 8 Update 161开始，Java 8默认为“无限强度管辖权策略”。如果收到此错误，则可能表明配置已更改为受限。请参阅下一节有关Java 8 Update 151或上一节有关Java 9的说明，以将其更改回无限制。</p>
+<h3 id="Java-8-Update-151及更高版本"><a href="#Java-8-Update-151及更高版本" class="headerlink" title="Java 8 Update 151及更高版本"></a>Java 8 Update 151及更高版本</h3><p>从Java 8 Update 151开始，Java 8附带了无限强度管辖策略，但默认情况下不使用。要启用它，您需要在<java_home> &#x2F;jre&#x2F;lib&#x2F;security（对于JDK）或<java_home> &#x2F;lib&#x2F;security（对于JRE）中编辑java.security文件。取消注释（或包括）<br>crypto.policy &#x3D; unlimited 行确保使用管理员身份运行的编辑器来编辑文件。</p>
+<p>为了向后兼容，按照下一节中所述安装策略文件仍然可以正常工作。</p>
+<h3 id="在Java-8-Update-151之前-删除最大密钥大小限制"><a href="#在Java-8-Update-151之前-删除最大密钥大小限制" class="headerlink" title="在Java 8 Update 151之前-删除最大密钥大小限制"></a>在Java 8 Update 151之前-删除最大密钥大小限制</h3><p>您可以通过使用无限强度策略jar替换现有的JCE jar来消除最大密钥限制。</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="http://www.oracle.com/technetwork/java/javase/downloads/jce-6-download-429243.html">Java密码术扩展（JCE）无限强度管辖权策略文件6</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html">Java密码术扩展（JCE）无限强度管辖权策略文件7下载</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html">Java密码术扩展（JCE）无限强度管辖权策略文件8下载</a></p>
+</li>
+</ul>
+<p> 下载zip文件，解压缩jar并将其替换为JDK &#x2F; JRE。</p>
+<p>为此，将从上面的zip文件中提取的<strong>local_policy.jar</strong>和<strong>US_export_policy.jar</strong>复制到**$ JAVA_HOME &#x2F; jre &#x2F; lib &#x2F; security** </p>
+<p><strong>注意：这些jar已经在那里，因此您必须将其覆盖。</strong></p>
+<p>然后，只需重新启动Java应用程序，该异常就消失了。<strong>注意</strong>：如果您使用的是Ubuntu和webupd8 PPA，则只需运行-</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">apt-get <span class="hljs-keyword">install</span> oracle-java8-unlimited-jce-<span class="hljs-keyword">policy</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="最大加密密钥大小问题的另一种方法"><a href="#最大加密密钥大小问题的另一种方法" class="headerlink" title="最大加密密钥大小问题的另一种方法"></a>最大加密密钥大小问题的另一种方法</h3><p>这种方法确实是一种解决方法。实际上，这种方法是解决所有问题的方法，而且并非一帆风顺。是的，您一定已经猜到了- <strong>反射</strong></p>
+<p><strong>注意1</strong>：我不建议您使用“反射”方法，因为它很容易破解。如果您使用它，请保留它仅用于测试。<br>不要将它放在生产代码中：）<strong>注2：</strong>由于替换策略文件的更改是JDK本身的，因此您将必须在所有服务器上进行更改。另外，您将必须要求所有客户这样做。</p>
+<p>要查找加密算法允许的最大密钥长度，可以使用 <strong>Cipher.getMaxAllowedKeyLength（）</strong> 方法。例如，对于AES算法，您可以- </p>
+<p><strong>int maxKeyLength &#x3D; Cipher.getMaxAllowedKeyLength（“ AES”）;</strong></p>
+<p>参考： <a target="_blank" rel="noopener" href="http://opensourceforgeeks.blogspot.com/2014/09/how-to-install-java-cryptography.html">http://opensourceforgeeks.blogspot.com/2014/09/how-to-install-java-cryptography.html</a> </p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/java/" class="print-no-link">#java</a>
+      
+        <a href="/tags/%E5%8A%A0%E5%AF%86/" class="print-no-link">#加密</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/articles/idea%E9%85%8D%E7%BD%AE%E4%BC%98%E5%8C%96.html" title="idea配置优化">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">idea配置优化</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/articles/tomcat-%E5%8F%82%E6%95%B0%E8%B0%83%E4%BC%98.html" title="tomcat 参数调优">
+                        <span class="hidden-mobile">tomcat 参数调优</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
