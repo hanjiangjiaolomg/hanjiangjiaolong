@@ -23,14 +23,14 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="业务背景公司以前有两个项目，项目A和项目B，A和B项目的管理后台是写在一起的，名字叫做admin，随着公司开发第三个项目C，如果C管理后台往admin上面写，那么admin就要同时连接三个数据库（A,B,C项目数据库是分开的），为了让管理后台与原来的系统进行解耦，所以考虑让C的管理后台代码直接写在C上面，admin项目增加网关组件，把C项目管理的请求负载到C项目上面 因为公司较小，只是想单独用下网">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/Spring-Cloud-%E7%BD%91%E5%85%B3%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/001.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/Spring-Cloud-%E7%BD%91%E5%85%B3%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/001.png">
 <meta property="article:published_time" content="2019-11-18T05:22:13.000Z">
 <meta property="article:modified_time" content="2020-07-03T18:32:30.000Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="spring-cloud">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://hanjiangjiaolong.github.io/Spring-Cloud-%E7%BD%91%E5%85%B3%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/001.png">
+<meta name="twitter:image" content="https://hanjiangjiaolong.github.io/articles/Spring-Cloud-%E7%BD%91%E5%85%B3%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/001.png">
   
   
   
@@ -251,7 +251,10 @@
                 <h2 id="业务背景"><a href="#业务背景" class="headerlink" title="业务背景"></a>业务背景</h2><p>公司以前有两个项目，项目A和项目B，A和B项目的管理后台是写在一起的，名字叫做admin，随着公司开发第三个项目C，如果C管理后台往admin上面写，那么admin就要同时连接三个数据库（A,B,C项目数据库是分开的），为了让管理后台与原来的系统进行解耦，所以考虑让C的管理后台代码直接写在C上面，admin项目增加网关组件，把C项目管理的请求负载到C项目上面</p>
 <p>因为公司较小，只是想单独用下网关，所以不考虑注册中心即不使用注册中心</p>
 <p>设计图如下</p>
-<p><img src="/Spring-Cloud-%E7%BD%91%E5%85%B3%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/001.png" srcset="/img/loading.gif" lazyload alt="pass1"></p>
+<img src="/articles/Spring-Cloud-%E7%BD%91%E5%85%B3%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/001.png" srcset="/img/loading.gif" lazyload class="" title="pass1">
+
+
+
 <h3 id="gateway和zuul的选择"><a href="#gateway和zuul的选择" class="headerlink" title="gateway和zuul的选择"></a>gateway和zuul的选择</h3><p>gateway和zuul都是Spring Cloud里面的网关组件，具体区别可以百度。</p>
 <p>刚开始考虑gateway是Spring Cloud新版比较提倡使用的，我首先尝试融合了gateway组件</p>
 <ul>
