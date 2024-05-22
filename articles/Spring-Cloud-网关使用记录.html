@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/articles/img/fluid.png">
+  <link rel="icon" href="/articles/img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,18 +19,18 @@
     <meta name="description" content="业务背景公司以前有两个项目，项目A和项目B，A和B项目的管理后台是写在一起的，名字叫做admin，随着公司开发第三个项目C，如果C管理后台往admin上面写，那么admin就要同时连接三个数据库（A,B,C项目数据库是分开的），为了让管理后台与原来的系统进行解耦，所以考虑让C的管理后台代码直接写在C上面，admin项目增加网关组件，把C项目管理的请求负载到C项目上面 因为公司较小，只是想单独用下网">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring Cloud 网关使用记录">
-<meta property="og:url" content="https://hanjiangjiaolong.github.io/articles/Spring-Cloud-%E7%BD%91%E5%85%B3%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95.html">
+<meta property="og:url" content="https://hanjiangjiaolong.github.io/articles/articles/Spring-Cloud-%E7%BD%91%E5%85%B3%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="业务背景公司以前有两个项目，项目A和项目B，A和B项目的管理后台是写在一起的，名字叫做admin，随着公司开发第三个项目C，如果C管理后台往admin上面写，那么admin就要同时连接三个数据库（A,B,C项目数据库是分开的），为了让管理后台与原来的系统进行解耦，所以考虑让C的管理后台代码直接写在C上面，admin项目增加网关组件，把C项目管理的请求负载到C项目上面 因为公司较小，只是想单独用下网">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/Spring-Cloud-%E7%BD%91%E5%85%B3%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/001.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/Spring-Cloud-%E7%BD%91%E5%85%B3%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/001.png">
 <meta property="article:published_time" content="2019-11-18T05:22:13.000Z">
 <meta property="article:modified_time" content="2020-07-03T18:32:30.000Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="spring-cloud">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://hanjiangjiaolong.github.io/Spring-Cloud-%E7%BD%91%E5%85%B3%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/001.png">
+<meta name="twitter:image" content="https://hanjiangjiaolong.github.io/articles/Spring-Cloud-%E7%BD%91%E5%85%B3%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/001.png">
   
   
   
@@ -58,12 +58,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/articles/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/articles/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/articles/css/highlight-dark.css" />
   
 
 
@@ -72,15 +72,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"hanjiangjiaolong.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"hanjiangjiaolong.github.io","root":"/articles/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/articles/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/articles/js/utils.js" ></script>
+  <script  src="/articles/js/color-schema.js" ></script>
   
 
 
@@ -97,7 +97,7 @@
 <div class="header-inner" style="height: 23vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/articles/">
       <strong>Fluid</strong>
     </a>
 
@@ -116,7 +116,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/articles/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -128,7 +128,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/articles/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -140,7 +140,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/articles/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -152,7 +152,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/articles/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -182,7 +182,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/articles/img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -251,7 +251,7 @@
                 <h2 id="业务背景"><a href="#业务背景" class="headerlink" title="业务背景"></a>业务背景</h2><p>公司以前有两个项目，项目A和项目B，A和B项目的管理后台是写在一起的，名字叫做admin，随着公司开发第三个项目C，如果C管理后台往admin上面写，那么admin就要同时连接三个数据库（A,B,C项目数据库是分开的），为了让管理后台与原来的系统进行解耦，所以考虑让C的管理后台代码直接写在C上面，admin项目增加网关组件，把C项目管理的请求负载到C项目上面</p>
 <p>因为公司较小，只是想单独用下网关，所以不考虑注册中心即不使用注册中心</p>
 <p>设计图如下</p>
-<p><img src="/Spring-Cloud-%E7%BD%91%E5%85%B3%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/001.png" srcset="/img/loading.gif" lazyload alt="pass1"></p>
+<p><img src="/articles/Spring-Cloud-%E7%BD%91%E5%85%B3%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/001.png" srcset="/articles/img/loading.gif" lazyload alt="pass1"></p>
 <h3 id="gateway和zuul的选择"><a href="#gateway和zuul的选择" class="headerlink" title="gateway和zuul的选择"></a>gateway和zuul的选择</h3><p>gateway和zuul都是Spring Cloud里面的网关组件，具体区别可以百度。</p>
 <p>刚开始考虑gateway是Spring Cloud新版比较提倡使用的，我首先尝试融合了gateway组件</p>
 <ul>
@@ -315,9 +315,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/java/" class="print-no-link">#java</a>
+        <a href="/articles/tags/java/" class="print-no-link">#java</a>
       
-        <a href="/tags/spring-cloud/" class="print-no-link">#spring-cloud</a>
+        <a href="/articles/tags/spring-cloud/" class="print-no-link">#spring-cloud</a>
       
     </div>
   
@@ -331,7 +331,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/articles/%E8%AE%BE%E7%BD%AE-Goproxy-%E8%A7%A3%E5%86%B3-go-mod-%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E4%BE%9D%E8%B5%96%E7%9A%84%E9%97%AE%E9%A2%98.html" title="设置 Goproxy 解决 go mod 无法下载依赖的问题">
+                      <a href="/articles/articles/%E8%AE%BE%E7%BD%AE-Goproxy-%E8%A7%A3%E5%86%B3-go-mod-%E6%97%A0%E6%B3%95%E4%B8%8B%E8%BD%BD%E4%BE%9D%E8%B5%96%E7%9A%84%E9%97%AE%E9%A2%98.html" title="设置 Goproxy 解决 go mod 无法下载依赖的问题">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">设置 Goproxy 解决 go mod 无法下载依赖的问题</span>
                         <span class="visible-mobile">上一篇</span>
@@ -341,7 +341,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/articles/maven%E4%BE%9D%E8%B5%96%E6%8E%92%E9%99%A4.html" title="maven依赖排除">
+                      <a href="/articles/articles/maven%E4%BE%9D%E8%B5%96%E6%8E%92%E9%99%A4.html" title="maven依赖排除">
                         <span class="hidden-mobile">maven依赖排除</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -471,8 +471,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/articles/js/events.js" ></script>
+<script  src="/articles/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -494,7 +494,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/articles/js/img-lazyload.js" ></script>
   
 
 
@@ -593,7 +593,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/articles/js/local-search.js" ></script>
 
 
 
@@ -601,7 +601,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/articles/js/boot.js" ></script>
 
 
   
