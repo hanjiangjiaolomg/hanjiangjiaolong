@@ -19,17 +19,17 @@
     <meta name="description" content="-main.go -hello.go 两个代码的package 都是 main，main.go引用hello.go，执行main.go 就会提示  undefined:xxxx 原因是idea编译的的时候只编译了main.go未编译其同目录下的其他文件，我们只要让他编译这个目录就可以了，需要修改idea的编译的一些设置  修改Run Kind未package 修改package path为代码目录">
 <meta property="og:type" content="article">
 <meta property="og:title" content="IDEA 编译Go工程，go文件之间的函数调用问题">
-<meta property="og:url" content="http://example.com/articles/IDEA-%E7%BC%96%E8%AF%91Go%E5%B7%A5%E7%A8%8B%EF%BC%8Cgo%E6%96%87%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E9%97%AE%E9%A2%98.html">
+<meta property="og:url" content="https://hanjiangjiaolong.github.io/articles/IDEA-%E7%BC%96%E8%AF%91Go%E5%B7%A5%E7%A8%8B%EF%BC%8Cgo%E6%96%87%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E9%97%AE%E9%A2%98.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="-main.go -hello.go 两个代码的package 都是 main，main.go引用hello.go，执行main.go 就会提示  undefined:xxxx 原因是idea编译的的时候只编译了main.go未编译其同目录下的其他文件，我们只要让他编译这个目录就可以了，需要修改idea的编译的一些设置  修改Run Kind未package 修改package path为代码目录">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/IDEA-%E7%BC%96%E8%AF%91Go%E5%B7%A5%E7%A8%8B%EF%BC%8Cgo%E6%96%87%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E9%97%AE%E9%A2%98/001.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/IDEA-%E7%BC%96%E8%AF%91Go%E5%B7%A5%E7%A8%8B%EF%BC%8Cgo%E6%96%87%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E9%97%AE%E9%A2%98/001.png">
 <meta property="article:published_time" content="2019-12-13T06:55:06.000Z">
 <meta property="article:modified_time" content="2020-07-03T18:32:30.000Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="golang">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/IDEA-%E7%BC%96%E8%AF%91Go%E5%B7%A5%E7%A8%8B%EF%BC%8Cgo%E6%96%87%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E9%97%AE%E9%A2%98/001.png">
+<meta name="twitter:image" content="https://hanjiangjiaolong.github.io/IDEA-%E7%BC%96%E8%AF%91Go%E5%B7%A5%E7%A8%8B%EF%BC%8Cgo%E6%96%87%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E9%97%AE%E9%A2%98/001.png">
   
   
   
@@ -71,7 +71,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"hanjiangjiaolong.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;

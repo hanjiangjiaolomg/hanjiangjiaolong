@@ -19,7 +19,7 @@
     <meta name="description" content="mysql中没有获取行号的函数，因此需要通过一些自定义语句来进行获取。通常做法是，通过定义用户变量@rownum来保存表中的数据。通过赋值语句@rownum：&#x3D;@rownum+1来累加达到递增行号。 例如: select a.* ,@rownum:&#x3D;@rownum+1 from a,(select @rownum:&#x3D;0) r; 后半部分语句的select @rownum:&#x3D;0">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql 中关于获取行号@rownum：&#x3D;@rownum+1">
-<meta property="og:url" content="http://example.com/articles/mysql-%E4%B8%AD%E5%85%B3%E4%BA%8E%E8%8E%B7%E5%8F%96%E8%A1%8C%E5%8F%B7-rownum%EF%BC%9A-rownum-1.html">
+<meta property="og:url" content="https://hanjiangjiaolong.github.io/articles/mysql-%E4%B8%AD%E5%85%B3%E4%BA%8E%E8%8E%B7%E5%8F%96%E8%A1%8C%E5%8F%B7-rownum%EF%BC%9A-rownum-1.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="mysql中没有获取行号的函数，因此需要通过一些自定义语句来进行获取。通常做法是，通过定义用户变量@rownum来保存表中的数据。通过赋值语句@rownum：&#x3D;@rownum+1来累加达到递增行号。 例如: select a.* ,@rownum:&#x3D;@rownum+1 from a,(select @rownum:&#x3D;0) r; 后半部分语句的select @rownum:&#x3D;0">
 <meta property="og:locale" content="zh_CN">
@@ -70,7 +70,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"hanjiangjiaolong.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;

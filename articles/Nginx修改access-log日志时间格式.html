@@ -19,7 +19,7 @@
     <meta name="description" content="一、修改原因因为要获取nginx访问信息，作为开发的数据使用，但是nginx的access.log文件中的默认的时间格式是这样的： [02&#x2F;Nov&#x2F;2017:20:48:25 +0800] 而要求的格式类似如下： [2017-11-02 20:52:06] 二、修改方法方法都几种，但是修改源码的方法看上去麻烦，做起来也简单，我这边修改了源码（把原来的删了，复制新的），重新编译">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nginx修改access.log日志时间格式">
-<meta property="og:url" content="http://example.com/articles/Nginx%E4%BF%AE%E6%94%B9access-log%E6%97%A5%E5%BF%97%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F.html">
+<meta property="og:url" content="https://hanjiangjiaolong.github.io/articles/Nginx%E4%BF%AE%E6%94%B9access-log%E6%97%A5%E5%BF%97%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="一、修改原因因为要获取nginx访问信息，作为开发的数据使用，但是nginx的access.log文件中的默认的时间格式是这样的： [02&#x2F;Nov&#x2F;2017:20:48:25 +0800] 而要求的格式类似如下： [2017-11-02 20:52:06] 二、修改方法方法都几种，但是修改源码的方法看上去麻烦，做起来也简单，我这边修改了源码（把原来的删了，复制新的），重新编译">
 <meta property="og:locale" content="zh_CN">
@@ -69,7 +69,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"hanjiangjiaolong.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;

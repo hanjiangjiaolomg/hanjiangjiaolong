@@ -19,7 +19,7 @@
     <meta name="description" content="最近在做一个在线播放视频流的程序，安卓和电脑上都可以正常的播放。可以唯独ios上无法正常播放。开始在网上找了很多资料觉得不是很到位，所以在这里记录一下。 刚开始时代码返回的视频流是在一个请求里全部返回的，而苹果的浏览器会先发一次探测请求来获取文件大小，之后再发送多次请求来分段取数据流的数据，其实这里就是一个分段上传的思想（Accept-Ranges）。有两个很重要的点就是， 第一：需要根据请求内容">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java处理苹果浏览器safari无法播放视频流（Accept-Ranges)">
-<meta property="og:url" content="http://example.com/articles/java%E5%A4%84%E7%90%86%E8%8B%B9%E6%9E%9C%E6%B5%8F%E8%A7%88%E5%99%A8safari%E6%97%A0%E6%B3%95%E6%92%AD%E6%94%BE%E8%A7%86%E9%A2%91%E6%B5%81%EF%BC%88Accept-Ranges.html">
+<meta property="og:url" content="https://hanjiangjiaolong.github.io/articles/java%E5%A4%84%E7%90%86%E8%8B%B9%E6%9E%9C%E6%B5%8F%E8%A7%88%E5%99%A8safari%E6%97%A0%E6%B3%95%E6%92%AD%E6%94%BE%E8%A7%86%E9%A2%91%E6%B5%81%EF%BC%88Accept-Ranges.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="最近在做一个在线播放视频流的程序，安卓和电脑上都可以正常的播放。可以唯独ios上无法正常播放。开始在网上找了很多资料觉得不是很到位，所以在这里记录一下。 刚开始时代码返回的视频流是在一个请求里全部返回的，而苹果的浏览器会先发一次探测请求来获取文件大小，之后再发送多次请求来分段取数据流的数据，其实这里就是一个分段上传的思想（Accept-Ranges）。有两个很重要的点就是， 第一：需要根据请求内容">
 <meta property="og:locale" content="zh_CN">
@@ -70,7 +70,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"hanjiangjiaolong.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
