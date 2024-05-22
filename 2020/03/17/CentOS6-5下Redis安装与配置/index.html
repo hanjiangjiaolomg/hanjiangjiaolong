@@ -1,0 +1,725 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本文详细介绍redis单机单实例安装与配置，服务及开机自启动 （**以下配置基于CentOS release 6.5 Final， redis版本3.0.2 [redis版本号中间位是偶数的是稳定版，奇数的为非稳定版]**） 一．安装redis 下载redis安装包  可去官网http:&#x2F;&#x2F;redis.io ，也可通过wget命令， wget http:&#x2F;&#x2F;download.redis.io&#x2F;re">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS6.5下Redis安装与配置">
+<meta property="og:url" content="http://example.com/2020/03/17/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文详细介绍redis单机单实例安装与配置，服务及开机自启动 （**以下配置基于CentOS release 6.5 Final， redis版本3.0.2 [redis版本号中间位是偶数的是稳定版，奇数的为非稳定版]**） 一．安装redis 下载redis安装包  可去官网http:&#x2F;&#x2F;redis.io ，也可通过wget命令， wget http:&#x2F;&#x2F;download.redis.io&#x2F;re">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/1.png">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/2.png">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/3.png">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/4.png">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/5.png">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/6.png">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/7.png">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/8.png">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/9.png">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/10.png">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/11.png">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/12.png">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/13.png">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/14.png">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/15.png">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/18.png">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/19.png">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/16.png">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/001.png">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/002.png">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/003.png">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/004.png">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/005.png">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/006.png">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/007.png">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/008.png">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/009.png">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/010.png">
+<meta property="og:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/011.png">
+<meta property="article:published_time" content="2020-03-17T03:46:22.000Z">
+<meta property="article:modified_time" content="2020-07-03T18:32:30.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="redis">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/1.png">
+  
+  
+  
+  <title>CentOS6.5下Redis安装与配置 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 23vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="CentOS6.5下Redis安装与配置"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-03-17 11:46" pubdate>
+          2020年3月17日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">CentOS6.5下Redis安装与配置</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>本文详细介绍redis单机单实例安装与配置，服务及开机自启动</p>
+<p>（**以下配置基于CentOS release 6.5 Final， redis版本3.0.2 [redis版本号中间位是偶数的是稳定版，奇数的为非稳定版]**）</p>
+<h1 id="一．安装redis"><a href="#一．安装redis" class="headerlink" title="一．安装redis"></a><strong>一．安装redis</strong></h1><ol>
+<li>下载redis安装包</li>
+</ol>
+<p>可去官网<a target="_blank" rel="noopener" href="http://redis.io/">http://redis.io</a> ，也可通过wget命令，</p>
+<p><code>wget http://download.redis.io/redis-stable.tar.gz</code></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/1.png" srcset="/img/loading.gif" lazyload></p>
+<ol start="2">
+<li>解压</li>
+</ol>
+<p><code>tar –zxvf redis-stable.tar.gz</code></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/2.png" srcset="/img/loading.gif" lazyload></p>
+<ol start="3">
+<li>编译、安装</li>
+</ol>
+<p><code>cd redis-stable</code></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/3.png" srcset="/img/loading.gif" lazyload></p>
+<p><code>make</code></p>
+<p>如果提示gcc command不识别，请自行安装gcc;</p>
+<p>如果提示couldn’t execute tcl : no such file or dicrectory，请自行安装tcl;</p>
+<p>如果提示</p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/4.png" srcset="/img/loading.gif" lazyload></p>
+<p>请执行make distclean，然后再make</p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/5.png" srcset="/img/loading.gif" lazyload></p>
+<p>Make成功之后，会在src目录下多出一些文件，如下</p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/6.png" srcset="/img/loading.gif" lazyload></p>
+<p>可手动拷贝redis-server、redis-cli、redis-check-aof、redis-check-dump等至&#x2F;usr&#x2F;local&#x2F;bin目录下，也可执行make install，此处执行make install</p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/7.png" srcset="/img/loading.gif" lazyload></p>
+<p>可查看，&#x2F;usr&#x2F;local&#x2F;bin下已有这些文件。</p>
+<p><strong>注意</strong>：若此时执行redis-server –v (查看版本命令)，若提示redis-server command not found，则需要将&#x2F;usr&#x2F;local&#x2F;bin目录加到环境变量，如何添加，此处不做详细介绍，可查看修改&#x2F;etc&#x2F;profile，(查看环境变量命令：echo $PATH)</p>
+<p>正常如下</p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/8.png" srcset="/img/loading.gif" lazyload></p>
+<p>至此，redis安装完成，接着配置。</p>
+<h1 id="二．修改配置文件-conf"><a href="#二．修改配置文件-conf" class="headerlink" title="二．修改配置文件.conf"></a><strong>二．修改配置文件.conf</strong></h1><ol>
+<li>创建配置文件目录，dump file 目录，进程pid目录，log目录等</li>
+</ol>
+<p>配置文件一般放在&#x2F;etc&#x2F;下，创建redis目录</p>
+<p><code>cd /etc/</code></p>
+<p><code>mkdir redis</code></p>
+<p>ll 查看创建的redis目录</p>
+<p>~</p>
+<p>dump file、进程pid、log目录等，一般放在&#x2F;var&#x2F;目录下，</p>
+<p><code>cd /var/</code></p>
+<p><code>mkdir redis</code></p>
+<p><code>cd redis</code></p>
+<p><code>mkdir data log run</code></p>
+<p>至此，目录创建完毕</p>
+<ol start="2">
+<li>修改配置文件，配置参数</li>
+</ol>
+<p>首先拷贝解压包下的redis.conf文件至&#x2F;etc&#x2F;redis</p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/9.png" srcset="/img/loading.gif" lazyload></p>
+<p>查看&#x2F;etc&#x2F;redis&#x2F;redis.conf</p>
+<p>cd &#x2F;etc&#x2F;redis&#x2F;</p>
+<p>ll</p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/10.png" srcset="/img/loading.gif" lazyload></p>
+<p>打开redis.conf文件</p>
+<p>修改端口(默认6379)</p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/11.png" srcset="/img/loading.gif" lazyload></p>
+<p>修改pid目录为新建目录</p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/12.png" srcset="/img/loading.gif" lazyload></p>
+<p>修改dump目录为新建目录</p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/13.png" srcset="/img/loading.gif" lazyload></p>
+<p>修改log存储目录为新建目录</p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/14.png" srcset="/img/loading.gif" lazyload></p>
+<p>修改密码，修改配置文件中requirepass 属性<br>requirepass 123   指定密码123</p>
+<ol start="3">
+<li>持久化</li>
+</ol>
+<p>默认rdb，可选择是否开启aof，若开启，修改配置文件appendonly</p>
+<ol start="4">
+<li>启动redis，查看各目录下文件</li>
+</ol>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/15.png" srcset="/img/loading.gif" lazyload></p>
+<p>如果有警告，可以参考控制台提示解决，有的可参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/a491857321/article/details/52006376">https://blog.csdn.net/a491857321/article/details/52006376</a></p>
+<p>查看进程</p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/18.png" srcset="/img/loading.gif" lazyload></p>
+<p>redis已启动</p>
+<p>查看dump, log, pid等</p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/19.png" srcset="/img/loading.gif" lazyload></p>
+<p>发现只有日志，没有dump和pid信息，是因为当前redis服务仍然是console模式运行的，且没有数据存储操作</p>
+<p>停止redis服务，修改配置文件使得redis在background运行</p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/16.png" srcset="/img/loading.gif" lazyload></p>
+<p>改成yes，保存，重启redis服务</p>
+<p>查看pid信息，如下</p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/001.png" srcset="/img/loading.gif" lazyload></p>
+<p>查看dump信息</p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/002.png" srcset="/img/loading.gif" lazyload></p>
+<p>若配置了aof持久化方式，data目录下还会有aof的相关文件</p>
+<ol start="5">
+<li>客户端连接redis</li>
+</ol>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/003.png" srcset="/img/loading.gif" lazyload></p>
+<p>默认端口6379</p>
+<ol start="6">
+<li>至此，redis基础配置完毕，若有其他相关配置调整，可查找文档再修改</li>
+</ol>
+<h1 id="三．服务及开机自启动"><a href="#三．服务及开机自启动" class="headerlink" title="三．服务及开机自启动"></a><strong>三．服务及开机自启动</strong></h1><ol>
+<li>创建redis启动脚本</li>
+</ol>
+<p>拷贝解压包下utils下redis启动脚本至&#x2F;etc&#x2F;init.d&#x2F;</p>
+<p>cp redis_init_script &#x2F;etc&#x2F;init.d&#x2F;</p>
+<p>修改脚本名称(也可不修改)为redis</p>
+<p>查看ll</p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/004.png" srcset="/img/loading.gif" lazyload></p>
+<p>修改脚本pid及conf路径为实际路径</p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/005.png" srcset="/img/loading.gif" lazyload></p>
+<p>生产环境下，配置时，配置文件、pid等最好加上端口标识，以便区分，如</p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/006.png" srcset="/img/loading.gif" lazyload></p>
+<p>保存</p>
+<p>退出</p>
+<p>至此，在&#x2F;etc&#x2F;init.d&#x2F;目录下，已经可以通过service redis start&#x2F;stop 命令启动和关闭redis</p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/007.png" srcset="/img/loading.gif" lazyload></p>
+<p>若在其他目录下，不能够使用这2个命令，请继续配置2)，添加权限</p>
+<ol start="2">
+<li>给启动脚本添加权限</li>
+</ol>
+<p><code>chmod +x /etc/init.d/redis</code></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/008.png" srcset="/img/loading.gif" lazyload></p>
+<p>实际命令，根据目录的不同，会不一样</p>
+<p>相应的删除权限是</p>
+<p><code>chmod –x /etc/init.d/redis</code></p>
+<p>如果需要在开机的时候，redis服务自动启动，可继续3)</p>
+<ol start="3">
+<li>设置自启动</li>
+</ol>
+<p><code>chkconfig redis on</code></p>
+<p>如果运行报错，提示</p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/009.png" srcset="/img/loading.gif" lazyload></p>
+<p>是因为没有在启动脚本里加入redis启动优先级信息，可添加如下</p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/010.png" srcset="/img/loading.gif" lazyload></p>
+<p>再次执行chkconfig redis on，成功</p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/011.png" srcset="/img/loading.gif" lazyload></p>
+<p>至此，自启动配置完毕</p>
+<p>参考</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ludonqin/article/details/47211109">https://blog.csdn.net/ludonqin/article/details/47211109</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/a491857321/article/details/52006376">https://blog.csdn.net/a491857321/article/details/52006376</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/x-ll123/p/9717351.html">https://www.cnblogs.com/x-ll123/p/9717351.html</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/linux/" class="print-no-link">#linux</a>
+      
+        <a href="/tags/redis/" class="print-no-link">#redis</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/03/31/SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E6%8A%8A%E4%B8%80%E4%B8%AA%E8%A1%A8%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%8D%E5%88%B6%E5%88%B0%E5%8F%A6%E4%B8%80%E4%B8%AA%E8%A1%A8%E4%B8%AD/" title="SQL数据库中把一个表中的数据复制到另一个表中">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">SQL数据库中把一个表中的数据复制到另一个表中</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/03/12/Spring-Boot-starter%E8%87%AA%E5%AE%9A%E4%B9%89/" title="Spring Boot starter自定义">
+                        <span class="hidden-mobile">Spring Boot starter自定义</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
