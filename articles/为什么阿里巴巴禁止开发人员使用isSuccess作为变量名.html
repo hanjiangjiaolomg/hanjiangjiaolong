@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/articles/img/fluid.png">
+  <link rel="icon" href="/articles/img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,17 +23,17 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="在日常开发中，我们经常要在类中定义布尔类型的变量，比如在提供RPC接口的时候，我们一般会定义一个字段表示本次请求是否成功的。 关于这个”本次请求是否成功”的字段的定义，其实是有很多种讲究和坑的，本文就来围绕这个简单分析一下。到底该如何定一个布尔类型的成员变量 一般情况下，我们可以有以下四种方式来定义一个布尔类型的成员变量：">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E7%A6%81%E6%AD%A2%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E4%BD%BF%E7%94%A8isSuccess%E4%BD%9C%E4%B8%BA%E5%8F%98%E9%87%8F%E5%90%8D/001.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E7%A6%81%E6%AD%A2%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E4%BD%BF%E7%94%A8isSuccess%E4%BD%9C%E4%B8%BA%E5%8F%98%E9%87%8F%E5%90%8D/002.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E7%A6%81%E6%AD%A2%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E4%BD%BF%E7%94%A8isSuccess%E4%BD%9C%E4%B8%BA%E5%8F%98%E9%87%8F%E5%90%8D/003.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E7%A6%81%E6%AD%A2%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E4%BD%BF%E7%94%A8isSuccess%E4%BD%9C%E4%B8%BA%E5%8F%98%E9%87%8F%E5%90%8D/004.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E7%A6%81%E6%AD%A2%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E4%BD%BF%E7%94%A8isSuccess%E4%BD%9C%E4%B8%BA%E5%8F%98%E9%87%8F%E5%90%8D/001.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E7%A6%81%E6%AD%A2%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E4%BD%BF%E7%94%A8isSuccess%E4%BD%9C%E4%B8%BA%E5%8F%98%E9%87%8F%E5%90%8D/002.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E7%A6%81%E6%AD%A2%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E4%BD%BF%E7%94%A8isSuccess%E4%BD%9C%E4%B8%BA%E5%8F%98%E9%87%8F%E5%90%8D/003.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E7%A6%81%E6%AD%A2%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E4%BD%BF%E7%94%A8isSuccess%E4%BD%9C%E4%B8%BA%E5%8F%98%E9%87%8F%E5%90%8D/004.png">
 <meta property="article:published_time" content="2019-07-23T09:58:18.000Z">
 <meta property="article:modified_time" content="2020-07-03T18:32:30.000Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="概念分析">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://hanjiangjiaolong.github.io/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E7%A6%81%E6%AD%A2%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E4%BD%BF%E7%94%A8isSuccess%E4%BD%9C%E4%B8%BA%E5%8F%98%E9%87%8F%E5%90%8D/001.png">
+<meta name="twitter:image" content="https://hanjiangjiaolong.github.io/articles/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E7%A6%81%E6%AD%A2%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E4%BD%BF%E7%94%A8isSuccess%E4%BD%9C%E4%B8%BA%E5%8F%98%E9%87%8F%E5%90%8D/001.png">
   
   
   
@@ -61,12 +61,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/articles/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/articles/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/articles/css/highlight-dark.css" />
   
 
 
@@ -75,15 +75,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"hanjiangjiaolong.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"hanjiangjiaolong.github.io","root":"/articles/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/articles/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/articles/js/utils.js" ></script>
+  <script  src="/articles/js/color-schema.js" ></script>
   
 
 
@@ -100,7 +100,7 @@
 <div class="header-inner" style="height: 23vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/articles/">
       <strong>Fluid</strong>
     </a>
 
@@ -119,7 +119,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/articles/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -131,7 +131,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/articles/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -143,7 +143,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/articles/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -155,7 +155,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/articles/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -185,7 +185,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/articles/img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -267,7 +267,7 @@
 </ul>
 <h3 id="首先，我们来分析一下，到底应该是用success来命名，还是使用isSuccess更好一点。"><a href="#首先，我们来分析一下，到底应该是用success来命名，还是使用isSuccess更好一点。" class="headerlink" title="首先，我们来分析一下，到底应该是用success来命名，还是使用isSuccess更好一点。"></a>首先，我们来分析一下，到底应该是用success来命名，还是使用isSuccess更好一点。</h3><p>到底应该是用success还是isSuccess来给变量命名呢？从语义上面来讲，两种命名方式都可以讲的通，并且也都没有歧义。那么还有什么原则可以参考来让我们做选择呢。</p>
 <p>在阿里巴巴Java开发手册中关于这一点，有过一个『强制性』规定：</p>
-<p> <img src="/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E7%A6%81%E6%AD%A2%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E4%BD%BF%E7%94%A8isSuccess%E4%BD%9C%E4%B8%BA%E5%8F%98%E9%87%8F%E5%90%8D/001.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p> <img src="/articles/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E7%A6%81%E6%AD%A2%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E4%BD%BF%E7%94%A8isSuccess%E4%BD%9C%E4%B8%BA%E5%8F%98%E9%87%8F%E5%90%8D/001.png" srcset="/articles/img/loading.gif" lazyload alt="image.png"></p>
 <p>那么，为什么会有这样的规定呢？我们看一下POJO中布尔类型变量不同的命名有什么区别吧。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> org.yungu.success;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Model1</span> &#123;<br>    <span class="hljs-keyword">private</span> Boolean isSuccess;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setSuccess</span><span class="hljs-params">(Boolean success)</span> &#123;<br>        isSuccess = success;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> Boolean <span class="hljs-title function_">getSuccess</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> isSuccess;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Model2</span> &#123;<br>    <span class="hljs-keyword">private</span> Boolean success;<br><br>    <span class="hljs-keyword">public</span> Boolean <span class="hljs-title function_">getSuccess</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> success;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setSuccess</span><span class="hljs-params">(Boolean success)</span> &#123;<br>        <span class="hljs-built_in">this</span>.success = success;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Model3</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">boolean</span> isSuccess;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isSuccess</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> isSuccess;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setSuccess</span><span class="hljs-params">(<span class="hljs-type">boolean</span> success)</span> &#123;<br>        isSuccess = success;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Model4</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">boolean</span> success;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isSuccess</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> success;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setSuccess</span><span class="hljs-params">(<span class="hljs-type">boolean</span> success)</span> &#123;<br>        <span class="hljs-built_in">this</span>.success = success;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 
@@ -286,7 +286,7 @@
 <p>但是，布尔类型的变量propertyName则是单独定义的：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> is&lt;PropertyName&gt;();<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> set&lt;PropertyName&gt;(<span class="hljs-type">boolean</span> m);<br></code></pre></td></tr></table></figure>
 
-<p> <img src="/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E7%A6%81%E6%AD%A2%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E4%BD%BF%E7%94%A8isSuccess%E4%BD%9C%E4%B8%BA%E5%8F%98%E9%87%8F%E5%90%8D/002.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p> <img src="/articles/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E7%A6%81%E6%AD%A2%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E4%BD%BF%E7%94%A8isSuccess%E4%BD%9C%E4%B8%BA%E5%8F%98%E9%87%8F%E5%90%8D/002.png" srcset="/articles/img/loading.gif" lazyload alt="image.png"></p>
 <p>通过对照这份JavaBeans规范，我们发现，在Model4中，变量名为isSuccess，如果严格按照规范定义的话，他的getter方法应该叫isIsSuccess。但是很多IDE都会默认生成为isSuccess。</p>
 <p>那这样做会带来什么问题呢。</p>
 <p>在一般情况下，其实是没有影响的。但是有一种特殊情况就会有问题，那就是发生序列化的时候。</p>
@@ -318,14 +318,14 @@
 <p>根据<code>&#123;&quot;success&quot;:true&#125;</code>这个json串，Gson框架在通过解析后，通过反射寻找Model类中的success属性，但是Model类中只有isSuccess属性，所以，最终反序列化后的Model类的对象中，isSuccess则会使用默认值false。</p>
 <p>但是，<strong>一旦以上代码发生在生产环境，这绝对是一个致命的问题。</strong></p>
 <p>所以，作为开发者，我们应该想办法尽量避免这种问题的发生，对于POJO的设计者来说，只需要做简单的一件事就可以解决这个问题了，那就是把isSuccess改为success。</p>
-<p>这样，该类里面的成员变量时success，getter方法是isSuccess，这是完全符合JavaBeans规范的。无论哪种序列化框架，执行结果都一样。就从源头避免了这个问题。<br> <img src="/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E7%A6%81%E6%AD%A2%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E4%BD%BF%E7%94%A8isSuccess%E4%BD%9C%E4%B8%BA%E5%8F%98%E9%87%8F%E5%90%8D/003.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>这样，该类里面的成员变量时success，getter方法是isSuccess，这是完全符合JavaBeans规范的。无论哪种序列化框架，执行结果都一样。就从源头避免了这个问题。<br> <img src="/articles/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E7%A6%81%E6%AD%A2%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E4%BD%BF%E7%94%A8isSuccess%E4%BD%9C%E4%B8%BA%E5%8F%98%E9%87%8F%E5%90%8D/003.png" srcset="/articles/img/loading.gif" lazyload alt="image.png"></p>
 <p>所以，<strong>在定义POJO中的布尔类型的变量时，不要使用isSuccess这种形式，而要直接使用success！</strong></p>
 <h3 id="Boolean还是boolean？"><a href="#Boolean还是boolean？" class="headerlink" title="Boolean还是boolean？"></a>Boolean还是boolean？</h3><p>前面我们介绍完了在success和isSuccess之间如何选择，那么排除错误答案后，备选项还剩下：</p>
 <figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-built_in">boolean</span> success<br><span class="hljs-built_in">Boolean</span> success<br></code></pre></td></tr></table></figure>
 
 <p>当我们没有设置字段的值的时候，Boolean类型的变量会设置默认值为<code>null</code>，而boolean类型的变量会设置默认值为 <code>false</code>。</p>
 <p>即对象的默认值是<code>null</code>，boolean基本数据类型的默认值是 <code>false</code>。</p>
-<p>在阿里巴巴Java开发手册中，对于POJO中如何选择变量的类型也有着一些规定：<br> <img src="/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E7%A6%81%E6%AD%A2%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E4%BD%BF%E7%94%A8isSuccess%E4%BD%9C%E4%B8%BA%E5%8F%98%E9%87%8F%E5%90%8D/004.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>在阿里巴巴Java开发手册中，对于POJO中如何选择变量的类型也有着一些规定：<br> <img src="/articles/%E4%B8%BA%E4%BB%80%E4%B9%88%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E7%A6%81%E6%AD%A2%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E4%BD%BF%E7%94%A8isSuccess%E4%BD%9C%E4%B8%BA%E5%8F%98%E9%87%8F%E5%90%8D/004.png" srcset="/articles/img/loading.gif" lazyload alt="image.png"></p>
 <p>这里建议我们使用包装类型，原因是什么呢？</p>
 <p>举一个扣费的例子，我们做一个扣费系统，扣费时需要从外部的定价系统中读取一个费率的值，我们预期该接口的返回值中会包含一个浮点型的费率字段。当我们取到这个值得时候就使用公式：金额*费率&#x3D;费用 进行计算，计算结果进行划扣。</p>
 <p>如果由于计费系统异常，他可能会返回个默认值，如果这个字段是Double类型的话，该默认值为null，如果该字段是double类型的话，该默认值为0.0。</p>
@@ -346,9 +346,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/java/" class="print-no-link">#java</a>
+        <a href="/articles/tags/java/" class="print-no-link">#java</a>
       
-        <a href="/tags/%E6%A6%82%E5%BF%B5%E5%88%86%E6%9E%90/" class="print-no-link">#概念分析</a>
+        <a href="/articles/tags/%E6%A6%82%E5%BF%B5%E5%88%86%E6%9E%90/" class="print-no-link">#概念分析</a>
       
     </div>
   
@@ -362,7 +362,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/articles/Java%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96-md.html" title="Java序列化与反序列化.md">
+                      <a href="/articles/articles/Java%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96-md.html" title="Java序列化与反序列化.md">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Java序列化与反序列化.md</span>
                         <span class="visible-mobile">上一篇</span>
@@ -372,7 +372,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/articles/SimpleDateFormat%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%98%E5%9C%A8%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98.html" title="SimpleDateFormat时间格式化存在线程安全问题">
+                      <a href="/articles/articles/SimpleDateFormat%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%98%E5%9C%A8%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98.html" title="SimpleDateFormat时间格式化存在线程安全问题">
                         <span class="hidden-mobile">SimpleDateFormat时间格式化存在线程安全问题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -502,8 +502,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/articles/js/events.js" ></script>
+<script  src="/articles/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -525,7 +525,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/articles/js/img-lazyload.js" ></script>
   
 
 
@@ -624,7 +624,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/articles/js/local-search.js" ></script>
 
 
 
@@ -632,7 +632,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/articles/js/boot.js" ></script>
 
 
   

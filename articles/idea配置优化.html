@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/articles/img/fluid.png">
+  <link rel="icon" href="/articles/img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,14 +23,14 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="1.IntelliJ设置鼠标悬浮提示和修改快捷键https:&#x2F;&#x2F;blog.csdn.net&#x2F;u010596115&#x2F;article&#x2F;details&#x2F;53485969 2.IntelliJ IDEA设置自动导入包 https:&#x2F;&#x2F;blog.csdn.net&#x2F;DuanLiuchang&#x2F;article&#x2F;details&#x2F;73300381 3.IntelliJ IDEA代码提示不区分大小写（不同版本修改方式略">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/idea%E9%85%8D%E7%BD%AE%E4%BC%98%E5%8C%96/001.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/idea%E9%85%8D%E7%BD%AE%E4%BC%98%E5%8C%96/002.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/idea%E9%85%8D%E7%BD%AE%E4%BC%98%E5%8C%96/001.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/idea%E9%85%8D%E7%BD%AE%E4%BC%98%E5%8C%96/002.png">
 <meta property="article:published_time" content="2019-11-22T05:40:34.000Z">
 <meta property="article:modified_time" content="2020-07-03T18:32:30.000Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="idea">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://hanjiangjiaolong.github.io/idea%E9%85%8D%E7%BD%AE%E4%BC%98%E5%8C%96/001.png">
+<meta name="twitter:image" content="https://hanjiangjiaolong.github.io/articles/idea%E9%85%8D%E7%BD%AE%E4%BC%98%E5%8C%96/001.png">
   
   
   
@@ -58,12 +58,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/articles/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/articles/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/articles/css/highlight-dark.css" />
   
 
 
@@ -72,15 +72,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"hanjiangjiaolong.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"hanjiangjiaolong.github.io","root":"/articles/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/articles/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/articles/js/utils.js" ></script>
+  <script  src="/articles/js/color-schema.js" ></script>
   
 
 
@@ -97,7 +97,7 @@
 <div class="header-inner" style="height: 23vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/articles/">
       <strong>Fluid</strong>
     </a>
 
@@ -116,7 +116,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/articles/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -128,7 +128,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/articles/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -140,7 +140,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/articles/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -152,7 +152,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/articles/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -182,7 +182,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/articles/img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -251,7 +251,7 @@
                 <p><strong>1.IntelliJ设置鼠标悬浮提示和修改快捷键</strong><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010596115/article/details/53485969">https://blog.csdn.net/u010596115/article/details/53485969</a></p>
 <p><strong>2.IntelliJ IDEA设置自动导入包</strong></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/DuanLiuchang/article/details/73300381">https://blog.csdn.net/DuanLiuchang/article/details/73300381</a></p>
-<p><strong>3.IntelliJ IDEA代码提示不区分大小写</strong>（不同版本修改方式略有不同）<br><img src="/idea%E9%85%8D%E7%BD%AE%E4%BC%98%E5%8C%96/001.png" srcset="/img/loading.gif" lazyload alt="pass1"></p>
+<p><strong>3.IntelliJ IDEA代码提示不区分大小写</strong>（不同版本修改方式略有不同）<br><img src="/articles/idea%E9%85%8D%E7%BD%AE%E4%BC%98%E5%8C%96/001.png" srcset="/articles/img/loading.gif" lazyload alt="pass1"></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/shijiebei2009/article/details/38541141">https://blog.csdn.net/shijiebei2009/article/details/38541141</a></p>
 <p><strong>4.Intellij IDEA 自动清除无效 import 和 清除无效 import 的快捷键</strong></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/heatdeath/article/details/79353990">https://blog.csdn.net/heatdeath/article/details/79353990</a></p>
@@ -264,7 +264,7 @@
 <p><strong>8.使用jRebel在IntelliJ IDEA 中进行 Java 热部署</strong></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/liuzhigang828/article/details/72875190">https://blog.csdn.net/liuzhigang828/article/details/72875190</a></p>
 <p><strong>9.设置创建Java文件模板</strong><br>对于一些动态的时间日期之类设定语法可以百度找一下</p>
-<p><img src="/idea%E9%85%8D%E7%BD%AE%E4%BC%98%E5%8C%96/002.png" srcset="/img/loading.gif" lazyload alt="pass1"></p>
+<p><img src="/articles/idea%E9%85%8D%E7%BD%AE%E4%BC%98%E5%8C%96/002.png" srcset="/articles/img/loading.gif" lazyload alt="pass1"></p>
 <p>*** 10.避免IDEA自动导入’*‘ **</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/smd2575624555/article/details/79484206">https://blog.csdn.net/smd2575624555/article/details/79484206</a></p>
 
@@ -279,7 +279,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/idea/" class="print-no-link">#idea</a>
+        <a href="/articles/tags/idea/" class="print-no-link">#idea</a>
       
     </div>
   
@@ -293,7 +293,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/articles/maven%E5%9C%A8window%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE.html" title="maven在window下的环境变量配置">
+                      <a href="/articles/articles/maven%E5%9C%A8window%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE.html" title="maven在window下的环境变量配置">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">maven在window下的环境变量配置</span>
                         <span class="visible-mobile">上一篇</span>
@@ -303,7 +303,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/articles/Java%E9%BB%98%E8%AE%A4%E4%B8%8D%E6%94%AF%E6%8C%81AES256.html" title="Java默认不支持AES256原因">
+                      <a href="/articles/articles/Java%E9%BB%98%E8%AE%A4%E4%B8%8D%E6%94%AF%E6%8C%81AES256.html" title="Java默认不支持AES256原因">
                         <span class="hidden-mobile">Java默认不支持AES256原因</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -433,8 +433,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/articles/js/events.js" ></script>
+<script  src="/articles/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -456,7 +456,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/articles/js/img-lazyload.js" ></script>
   
 
 
@@ -555,7 +555,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/articles/js/local-search.js" ></script>
 
 
 
@@ -563,7 +563,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/articles/js/boot.js" ></script>
 
 
   

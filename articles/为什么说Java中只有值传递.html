@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/articles/img/fluid.png">
+  <link rel="icon" href="/articles/img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,17 +23,17 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="实参与形参 形式参数：是在定义函数名和函数体的时候使用的参数,目的是用来接收调用该函数时传入的参数。 实际参数：在调用有参函数时，主调函数和被调函数之间有数据传递关系。在主调函数中调用一个函数时，函数名后面括号中的参数称为“实际参数”。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4Java%E4%B8%AD%E5%8F%AA%E6%9C%89%E5%80%BC%E4%BC%A0%E9%80%92/000.jpeg">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4Java%E4%B8%AD%E5%8F%AA%E6%9C%89%E5%80%BC%E4%BC%A0%E9%80%92/001.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4Java%E4%B8%AD%E5%8F%AA%E6%9C%89%E5%80%BC%E4%BC%A0%E9%80%92/002.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4Java%E4%B8%AD%E5%8F%AA%E6%9C%89%E5%80%BC%E4%BC%A0%E9%80%92/003.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4Java%E4%B8%AD%E5%8F%AA%E6%9C%89%E5%80%BC%E4%BC%A0%E9%80%92/000.jpeg">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4Java%E4%B8%AD%E5%8F%AA%E6%9C%89%E5%80%BC%E4%BC%A0%E9%80%92/001.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4Java%E4%B8%AD%E5%8F%AA%E6%9C%89%E5%80%BC%E4%BC%A0%E9%80%92/002.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4Java%E4%B8%AD%E5%8F%AA%E6%9C%89%E5%80%BC%E4%BC%A0%E9%80%92/003.png">
 <meta property="article:published_time" content="2019-07-22T06:44:37.000Z">
 <meta property="article:modified_time" content="2020-07-03T18:32:30.000Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="概念分析">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://hanjiangjiaolong.github.io/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4Java%E4%B8%AD%E5%8F%AA%E6%9C%89%E5%80%BC%E4%BC%A0%E9%80%92/000.jpeg">
+<meta name="twitter:image" content="https://hanjiangjiaolong.github.io/articles/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4Java%E4%B8%AD%E5%8F%AA%E6%9C%89%E5%80%BC%E4%BC%A0%E9%80%92/000.jpeg">
   
   
   
@@ -61,12 +61,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/articles/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/articles/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/articles/css/highlight-dark.css" />
   
 
 
@@ -75,15 +75,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"hanjiangjiaolong.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"hanjiangjiaolong.github.io","root":"/articles/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/articles/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/articles/js/utils.js" ></script>
+  <script  src="/articles/js/color-schema.js" ></script>
   
 
 
@@ -100,7 +100,7 @@
 <div class="header-inner" style="height: 23vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/articles/">
       <strong>Fluid</strong>
     </a>
 
@@ -119,7 +119,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
+              <a class="nav-link" href="/articles/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -131,7 +131,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
+              <a class="nav-link" href="/articles/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -143,7 +143,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
+              <a class="nav-link" href="/articles/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -155,7 +155,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
+              <a class="nav-link" href="/articles/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -185,7 +185,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/articles/img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -303,7 +303,7 @@
 <p>引用传递（pass by reference）是指在调用函数时将实际参数的地址<code>直接</code>传递到函数中，那么在函数中对<code>参数</code>所进行的修改，将影响到实际参数。</p>
 </blockquote>
 <p>那么，我来给大家总结一下，值传递和引用传递之前的区别的重点是什么。</p>
-<p><img src="/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4Java%E4%B8%AD%E5%8F%AA%E6%9C%89%E5%80%BC%E4%BC%A0%E9%80%92/000.jpeg" srcset="/img/loading.gif" lazyload alt="pass"></p>
+<p><img src="/articles/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4Java%E4%B8%AD%E5%8F%AA%E6%9C%89%E5%80%BC%E4%BC%A0%E9%80%92/000.jpeg" srcset="/articles/img/loading.gif" lazyload alt="pass"></p>
 <p>我们上面看过的几个pass的例子中，都只关注了实际参数内容是否有改变。如传递的是User对象，我们试着改变他的name属性的值，然后检查是否有改变。其实，在实验方法上就错了，当然得到的结论也就有问题了。</p>
 <p>为什么说实验方法错了呢？这里我们来举一个形象的例子。再来深入理解一下值传递和引用传递，然后你就知道为啥错了。</p>
 <p>你有一把钥匙，当你的朋友想要去你家的时候，如果你<code>直接</code>把你的钥匙给他了，这就是引用传递。这种情况下，如果他对这把钥匙做了什么事情，比如他在钥匙上刻下了自己名字，那么这把钥匙还给你的时候，你自己的钥匙上也会多出他刻的名字。</p>
@@ -316,16 +316,16 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">print in pass , user is User&#123;name=<span class="hljs-string">&#x27;hollischuang&#x27;</span>, gender=<span class="hljs-string">&#x27;Male&#x27;</span>&#125;<br>print in main , user is User&#123;name=<span class="hljs-string">&#x27;Hollis&#x27;</span>, gender=<span class="hljs-string">&#x27;Male&#x27;</span>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>我们来画一张图，看一下整个过程中发生了什么，然后我再告诉你，为啥Java中只有值传递。</p>
-<p><img src="/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4Java%E4%B8%AD%E5%8F%AA%E6%9C%89%E5%80%BC%E4%BC%A0%E9%80%92/001.png" srcset="/img/loading.gif" lazyload alt="pass1"></p>
+<p><img src="/articles/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4Java%E4%B8%AD%E5%8F%AA%E6%9C%89%E5%80%BC%E4%BC%A0%E9%80%92/001.png" srcset="/articles/img/loading.gif" lazyload alt="pass1"></p>
 <p>稍微解释下这张图，当我们在main中创建一个User对象的时候，在堆中开辟一块内存，其中保存了name和gender等数据。然后hollis持有该内存的地址<code>0x123456</code>（图1）。当尝试调用pass方法，并且hollis作为实际参数传递给形式参数user的时候，会把这个地址<code>0x123456</code>交给user，这时，user也指向了这个地址（图2）。然后在pass方法内对参数进行修改的时候，即<code>user = new User();</code>，会重新开辟一块<code>0X456789</code>的内存，赋值给user。后面对user的任何修改都不会改变内存<code>0X123456</code>的内容（图3）。</p>
 <p>上面这种传递是什么传递？肯定不是引用传递，如果是引用传递的话，在<code>user=new User()</code>的时候，实际参数的引用也应该改为指向<code>0X456789</code>，但是实际上并没有。</p>
 <p>通过概念我们也能知道，这里是把实际参数的引用的地址复制了一份，传递给了形式参数。所以，<strong>上面的参数其实是值传递，把实参对象引用的地址当做值传递给了形式参数。</strong></p>
 <p>我们再来回顾下之前的那个“砸电视”的例子，看那个例子中的传递过程发生了什么。</p>
-<p><img src="/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4Java%E4%B8%AD%E5%8F%AA%E6%9C%89%E5%80%BC%E4%BC%A0%E9%80%92/002.png" srcset="/img/loading.gif" lazyload alt="pass1"></p>
+<p><img src="/articles/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4Java%E4%B8%AD%E5%8F%AA%E6%9C%89%E5%80%BC%E4%BC%A0%E9%80%92/002.png" srcset="/articles/img/loading.gif" lazyload alt="pass1"></p>
 <p>同样的，在参数传递的过程中，实际参数的地址<code>0X1213456</code>被拷贝给了形参，只是，在这个方法中，并没有对形参本身进行修改，而是修改的形参持有的地址中存储的内容。</p>
 <p>所以，值传递和引用传递的区别并不是传递的内容。而是实参到底有没有被复制一份给形参。在判断实参内容有没有受影响的时候，要看传的的是什么，如果你传递的是个地址，那么就看这个地址的变化会不会有影响，而不是看地址指向的对象的变化。就像钥匙和房子的关系。</p>
 <p>那么，既然这样，为啥上面同样是传递对象，传递的String对象和User对象的表现结果不一样呢？我们在pass方法中使用<code>name = &quot;hollischuang&quot;;</code>试着去更改name的值，阴差阳错的直接改变了name的引用的地址。因为这段代码，会new一个String，在把引用交给name，即等价于<code>name = new String(&quot;hollischuang&quot;);</code>。而原来的那个”Hollis”字符串还是由实参持有着的，所以，并没有修改到实际参数的值。</p>
-<p><img src="/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4Java%E4%B8%AD%E5%8F%AA%E6%9C%89%E5%80%BC%E4%BC%A0%E9%80%92/003.png" srcset="/img/loading.gif" lazyload alt="pass1"></p>
+<p><img src="/articles/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4Java%E4%B8%AD%E5%8F%AA%E6%9C%89%E5%80%BC%E4%BC%A0%E9%80%92/003.png" srcset="/articles/img/loading.gif" lazyload alt="pass1"></p>
 <p><strong>所以说，Java中其实还是值传递的，只不过对于对象参数，值的内容是对象的引用。</strong></p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>无论是值传递还是引用传递，其实都是一种求值策略(<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Evaluation_strategy">Evaluation strategy</a>)。在求值策略中，还有一种叫做按共享传递(call by sharing)。其实Java中的参数传递严格意义上说应该是按共享传递。</p>
 <blockquote>
@@ -347,9 +347,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/java/" class="print-no-link">#java</a>
+        <a href="/articles/tags/java/" class="print-no-link">#java</a>
       
-        <a href="/tags/%E6%A6%82%E5%BF%B5%E5%88%86%E6%9E%90/" class="print-no-link">#概念分析</a>
+        <a href="/articles/tags/%E6%A6%82%E5%BF%B5%E5%88%86%E6%9E%90/" class="print-no-link">#概念分析</a>
       
     </div>
   
@@ -363,7 +363,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/articles/%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0%E7%9A%84%E5%A4%A7%E5%B0%8F.html" title="如何设置数据库连接池的大小">
+                      <a href="/articles/articles/%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0%E7%9A%84%E5%A4%A7%E5%B0%8F.html" title="如何设置数据库连接池的大小">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">如何设置数据库连接池的大小</span>
                         <span class="visible-mobile">上一篇</span>
@@ -373,7 +373,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/articles/PHP%E3%80%81JAVA%E3%80%81C-%E3%80%81Object-C-%E9%80%9A%E7%94%A8%E7%9A%84DES%E5%8A%A0%E5%AF%86.html" title="PHP、JAVA、C#、Object-C 通用的DES加密">
+                      <a href="/articles/articles/PHP%E3%80%81JAVA%E3%80%81C-%E3%80%81Object-C-%E9%80%9A%E7%94%A8%E7%9A%84DES%E5%8A%A0%E5%AF%86.html" title="PHP、JAVA、C#、Object-C 通用的DES加密">
                         <span class="hidden-mobile">PHP、JAVA、C#、Object-C 通用的DES加密</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -503,8 +503,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/articles/js/events.js" ></script>
+<script  src="/articles/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -526,7 +526,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/articles/js/img-lazyload.js" ></script>
   
 
 
@@ -625,7 +625,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/articles/js/local-search.js" ></script>
 
 
 
@@ -633,7 +633,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/articles/js/boot.js" ></script>
 
 
   
