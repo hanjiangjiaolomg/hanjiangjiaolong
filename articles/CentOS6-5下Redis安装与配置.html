@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/articles/img/fluid.png">
-  <link rel="icon" href="/articles/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,46 +19,46 @@
     <meta name="description" content="本文详细介绍redis单机单实例安装与配置，服务及开机自启动 （**以下配置基于CentOS release 6.5 Final， redis版本3.0.2 [redis版本号中间位是偶数的是稳定版，奇数的为非稳定版]**） 一．安装redis 下载redis安装包  可去官网http:&#x2F;&#x2F;redis.io ，也可通过wget命令， wget http:&#x2F;&#x2F;download.redis.io&#x2F;re">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS6.5下Redis安装与配置">
-<meta property="og:url" content="https://hanjiangjiaolong.github.io/articles/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html">
+<meta property="og:url" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="本文详细介绍redis单机单实例安装与配置，服务及开机自启动 （**以下配置基于CentOS release 6.5 Final， redis版本3.0.2 [redis版本号中间位是偶数的是稳定版，奇数的为非稳定版]**） 一．安装redis 下载redis安装包  可去官网http:&#x2F;&#x2F;redis.io ，也可通过wget命令， wget http:&#x2F;&#x2F;download.redis.io&#x2F;re">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/1.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/2.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/3.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/4.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/5.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/6.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/7.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/8.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/9.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/10.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/11.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/12.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/13.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/14.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/15.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/18.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/19.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/16.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/001.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/002.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/003.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/004.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/005.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/006.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/007.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/008.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/009.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/010.png">
-<meta property="og:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/011.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/1.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/2.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/3.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/4.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/5.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/6.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/7.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/8.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/9.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/10.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/11.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/12.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/13.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/14.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/15.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/18.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/19.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/16.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/001.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/002.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/003.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/004.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/005.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/006.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/007.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/008.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/009.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/010.png">
+<meta property="og:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/011.png">
 <meta property="article:published_time" content="2020-03-17T03:46:22.000Z">
 <meta property="article:modified_time" content="2020-07-03T18:32:30.000Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="linux">
 <meta property="article:tag" content="redis">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://hanjiangjiaolong.github.io/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/1.png">
+<meta name="twitter:image" content="https://hanjiangjiaolong.github.io/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/1.png">
   
   
   
@@ -86,12 +86,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/articles/css/main.css" />
+<link  rel="stylesheet" href="/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/articles/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/articles/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
@@ -100,15 +100,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"hanjiangjiaolong.github.io","root":"/articles/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/articles/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"hanjiangjiaolong.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/articles/js/utils.js" ></script>
-  <script  src="/articles/js/color-schema.js" ></script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
   
 
 
@@ -125,7 +125,7 @@
 <div class="header-inner" style="height: 23vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/articles/">
+    <a class="navbar-brand" href="/">
       <strong>Fluid</strong>
     </a>
 
@@ -144,7 +144,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/articles/" target="_self">
+              <a class="nav-link" href="/" target="_self">
                 <i class="iconfont icon-home-fill"></i>
                 <span>首页</span>
               </a>
@@ -156,7 +156,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/articles/archives/" target="_self">
+              <a class="nav-link" href="/archives/" target="_self">
                 <i class="iconfont icon-archive-fill"></i>
                 <span>归档</span>
               </a>
@@ -168,7 +168,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/articles/tags/" target="_self">
+              <a class="nav-link" href="/tags/" target="_self">
                 <i class="iconfont icon-tags-fill"></i>
                 <span>标签</span>
               </a>
@@ -180,7 +180,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/articles/about/" target="_self">
+              <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
               </a>
@@ -210,7 +210,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/articles/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -283,32 +283,32 @@
 </ol>
 <p>可去官网<a target="_blank" rel="noopener" href="http://redis.io/">http://redis.io</a> ，也可通过wget命令，</p>
 <p><code>wget http://download.redis.io/redis-stable.tar.gz</code></p>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/1.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/1.png" srcset="/img/loading.gif" lazyload></p>
 <ol start="2">
 <li>解压</li>
 </ol>
 <p><code>tar –zxvf redis-stable.tar.gz</code></p>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/2.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/2.png" srcset="/img/loading.gif" lazyload></p>
 <ol start="3">
 <li>编译、安装</li>
 </ol>
 <p><code>cd redis-stable</code></p>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/3.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/3.png" srcset="/img/loading.gif" lazyload></p>
 <p><code>make</code></p>
 <p>如果提示gcc command不识别，请自行安装gcc;</p>
 <p>如果提示couldn’t execute tcl : no such file or dicrectory，请自行安装tcl;</p>
 <p>如果提示</p>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/4.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/4.png" srcset="/img/loading.gif" lazyload></p>
 <p>请执行make distclean，然后再make</p>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/5.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/5.png" srcset="/img/loading.gif" lazyload></p>
 <p>Make成功之后，会在src目录下多出一些文件，如下</p>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/6.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/6.png" srcset="/img/loading.gif" lazyload></p>
 <p>可手动拷贝redis-server、redis-cli、redis-check-aof、redis-check-dump等至&#x2F;usr&#x2F;local&#x2F;bin目录下，也可执行make install，此处执行make install</p>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/7.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/7.png" srcset="/img/loading.gif" lazyload></p>
 <p>可查看，&#x2F;usr&#x2F;local&#x2F;bin下已有这些文件。</p>
 <p><strong>注意</strong>：若此时执行redis-server –v (查看版本命令)，若提示redis-server command not found，则需要将&#x2F;usr&#x2F;local&#x2F;bin目录加到环境变量，如何添加，此处不做详细介绍，可查看修改&#x2F;etc&#x2F;profile，(查看环境变量命令：echo $PATH)</p>
 <p>正常如下</p>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/8.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/8.png" srcset="/img/loading.gif" lazyload></p>
 <p>至此，redis安装完成，接着配置。</p>
 <h1 id="二．修改配置文件-conf"><a href="#二．修改配置文件-conf" class="headerlink" title="二．修改配置文件.conf"></a><strong>二．修改配置文件.conf</strong></h1><ol>
 <li>创建配置文件目录，dump file 目录，进程pid目录，log目录等</li>
@@ -328,20 +328,20 @@
 <li>修改配置文件，配置参数</li>
 </ol>
 <p>首先拷贝解压包下的redis.conf文件至&#x2F;etc&#x2F;redis</p>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/9.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/9.png" srcset="/img/loading.gif" lazyload></p>
 <p>查看&#x2F;etc&#x2F;redis&#x2F;redis.conf</p>
 <p>cd &#x2F;etc&#x2F;redis&#x2F;</p>
 <p>ll</p>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/10.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/10.png" srcset="/img/loading.gif" lazyload></p>
 <p>打开redis.conf文件</p>
 <p>修改端口(默认6379)</p>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/11.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/11.png" srcset="/img/loading.gif" lazyload></p>
 <p>修改pid目录为新建目录</p>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/12.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/12.png" srcset="/img/loading.gif" lazyload></p>
 <p>修改dump目录为新建目录</p>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/13.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/13.png" srcset="/img/loading.gif" lazyload></p>
 <p>修改log存储目录为新建目录</p>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/14.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/14.png" srcset="/img/loading.gif" lazyload></p>
 <p>修改密码，修改配置文件中requirepass 属性<br>requirepass 123   指定密码123</p>
 <ol start="3">
 <li>持久化</li>
@@ -350,26 +350,26 @@
 <ol start="4">
 <li>启动redis，查看各目录下文件</li>
 </ol>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/15.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/15.png" srcset="/img/loading.gif" lazyload></p>
 <p>如果有警告，可以参考控制台提示解决，有的可参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/a491857321/article/details/52006376">https://blog.csdn.net/a491857321/article/details/52006376</a></p>
 <p>查看进程</p>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/18.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/18.png" srcset="/img/loading.gif" lazyload></p>
 <p>redis已启动</p>
 <p>查看dump, log, pid等</p>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/19.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/19.png" srcset="/img/loading.gif" lazyload></p>
 <p>发现只有日志，没有dump和pid信息，是因为当前redis服务仍然是console模式运行的，且没有数据存储操作</p>
 <p>停止redis服务，修改配置文件使得redis在background运行</p>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/16.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/16.png" srcset="/img/loading.gif" lazyload></p>
 <p>改成yes，保存，重启redis服务</p>
 <p>查看pid信息，如下</p>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/001.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/001.png" srcset="/img/loading.gif" lazyload></p>
 <p>查看dump信息</p>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/002.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/002.png" srcset="/img/loading.gif" lazyload></p>
 <p>若配置了aof持久化方式，data目录下还会有aof的相关文件</p>
 <ol start="5">
 <li>客户端连接redis</li>
 </ol>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/003.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/003.png" srcset="/img/loading.gif" lazyload></p>
 <p>默认端口6379</p>
 <ol start="6">
 <li>至此，redis基础配置完毕，若有其他相关配置调整，可查找文档再修改</li>
@@ -381,21 +381,21 @@
 <p>cp redis_init_script &#x2F;etc&#x2F;init.d&#x2F;</p>
 <p>修改脚本名称(也可不修改)为redis</p>
 <p>查看ll</p>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/004.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/004.png" srcset="/img/loading.gif" lazyload></p>
 <p>修改脚本pid及conf路径为实际路径</p>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/005.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/005.png" srcset="/img/loading.gif" lazyload></p>
 <p>生产环境下，配置时，配置文件、pid等最好加上端口标识，以便区分，如</p>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/006.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/006.png" srcset="/img/loading.gif" lazyload></p>
 <p>保存</p>
 <p>退出</p>
 <p>至此，在&#x2F;etc&#x2F;init.d&#x2F;目录下，已经可以通过service redis start&#x2F;stop 命令启动和关闭redis</p>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/007.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/007.png" srcset="/img/loading.gif" lazyload></p>
 <p>若在其他目录下，不能够使用这2个命令，请继续配置2)，添加权限</p>
 <ol start="2">
 <li>给启动脚本添加权限</li>
 </ol>
 <p><code>chmod +x /etc/init.d/redis</code></p>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/008.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/008.png" srcset="/img/loading.gif" lazyload></p>
 <p>实际命令，根据目录的不同，会不一样</p>
 <p>相应的删除权限是</p>
 <p><code>chmod –x /etc/init.d/redis</code></p>
@@ -405,11 +405,11 @@
 </ol>
 <p><code>chkconfig redis on</code></p>
 <p>如果运行报错，提示</p>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/009.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/009.png" srcset="/img/loading.gif" lazyload></p>
 <p>是因为没有在启动脚本里加入redis启动优先级信息，可添加如下</p>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/010.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/010.png" srcset="/img/loading.gif" lazyload></p>
 <p>再次执行chkconfig redis on，成功</p>
-<p><img src="/articles/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/011.png" srcset="/articles/img/loading.gif" lazyload></p>
+<p><img src="/CentOS6-5%E4%B8%8BRedis%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/011.png" srcset="/img/loading.gif" lazyload></p>
 <p>至此，自启动配置完毕</p>
 <p>参考</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ludonqin/article/details/47211109">https://blog.csdn.net/ludonqin/article/details/47211109</a></p>
@@ -427,9 +427,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/articles/tags/linux/" class="print-no-link">#linux</a>
+        <a href="/tags/linux/" class="print-no-link">#linux</a>
       
-        <a href="/articles/tags/redis/" class="print-no-link">#redis</a>
+        <a href="/tags/redis/" class="print-no-link">#redis</a>
       
     </div>
   
@@ -443,7 +443,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/articles/articles/SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E6%8A%8A%E4%B8%80%E4%B8%AA%E8%A1%A8%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%8D%E5%88%B6%E5%88%B0%E5%8F%A6%E4%B8%80%E4%B8%AA%E8%A1%A8%E4%B8%AD.html" title="SQL数据库中把一个表中的数据复制到另一个表中">
+                      <a href="/articles/SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E6%8A%8A%E4%B8%80%E4%B8%AA%E8%A1%A8%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%8D%E5%88%B6%E5%88%B0%E5%8F%A6%E4%B8%80%E4%B8%AA%E8%A1%A8%E4%B8%AD.html" title="SQL数据库中把一个表中的数据复制到另一个表中">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">SQL数据库中把一个表中的数据复制到另一个表中</span>
                         <span class="visible-mobile">上一篇</span>
@@ -453,7 +453,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/articles/articles/Spring-Boot-starter%E8%87%AA%E5%AE%9A%E4%B9%89.html" title="Spring Boot starter自定义">
+                      <a href="/articles/Spring-Boot-starter%E8%87%AA%E5%AE%9A%E4%B9%89.html" title="Spring Boot starter自定义">
                         <span class="hidden-mobile">Spring Boot starter自定义</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -583,8 +583,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/articles/js/events.js" ></script>
-<script  src="/articles/js/plugins.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -606,7 +606,7 @@
 
 
   
-    <script  src="/articles/js/img-lazyload.js" ></script>
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
@@ -705,7 +705,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/articles/js/local-search.js" ></script>
+  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -713,7 +713,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/articles/js/boot.js" ></script>
+<script  src="/js/boot.js" ></script>
 
 
   
